@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/taotie-hero.png" alt="Taotie skill fusion" width="100%" />
+<img src="assets/taotie-hero.jpg" alt="Taotie skill fusion" width="100%" />
 
 # Taotie · 饕餮
 
@@ -97,7 +97,7 @@ Taotie 会优先生成候选版本和报告。安装、替换、禁用或删除�
 - [references/fusion.md](references/fusion.md)：能力拆解、融合和取舍规则。
 - [references/evaluation.md](references/evaluation.md)：结构检查与行为对比方法。
 - [references/sources.md](references/sources.md)：设计参考和边界说明。
-- [assets/taotie-hero.png](assets/taotie-hero.png)：Taotie 项目封面图。
+- [assets/taotie-hero.jpg](assets/taotie-hero.jpg)：Taotie 项目封面图。
 
 ## 当前状态
 
@@ -106,4 +106,3 @@ Taotie 当前是可用的实验版，已经覆盖 Skill 盘点、能力融合、
 ## 许可
 
 本仓库暂未指定开源许可。再次分发或将其他项目内容吸收到融合版前，请遵守各来源项目的许可证和署名要求。
-
