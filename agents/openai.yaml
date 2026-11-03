@@ -1,0 +1,5 @@
+interface:
+  display_name: "Taotie · 饕餮"
+  short_description: "比较、吸收并验证同类 Agent Skills"
+  default_prompt: "使用 Taotie 分析并融合这些同类 Skills，保留来源记录并生成可验证的独立版本。"
+
