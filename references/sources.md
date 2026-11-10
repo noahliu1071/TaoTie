@@ -6,7 +6,7 @@
 - https://github.com/justinwetch/SkillEval ：借鉴同输入A/B比较和实际输出评审。Taotie不声称自带该项目的评测执行引擎。
 - https://github.com/Rainnystone/skill-orchestration-system ：借鉴可审阅变更、备份和分组管理。Taotie不自动重写宿主配置，不采用“所有技能正文都会默认加载”的泛化说法。
 - 本地 Codex skill-creator：采用渐进加载、明确触发、可用资源与行为验收原则。
-- Codex Motion Director（LBS1111，源项目 MIT）：参考其 `learning/skill-learning.md`、`references/skill-contract.md`、`references/memory-policy.md` 与 `scripts/core.py` 的工作方式，保留能力级提炼、版本绑定确认、证据分级和可撤销记忆。饕餮独立编写通用流程和 SQLite 实现，运行无需原技能、原数据、媒体依赖或动效能力词表。
+- Codex Motion Director（LBS1111，源项目 MIT）：参考其 `learning/skill-learning.md`、`references/skill-contract.md`、`references/memory-policy.md`、`scripts/core.py` 与路由配置。吸收来源增量发现、版本绑定确认、证据分级、偏好管理、检索与组合、撤销和恢复提议。饕餮独立编写通用流程和 SQLite 实现，以显式任务标签替代原有动效词表。
 
 这不是 binggandata 的 bggg-skill-taotie 的安装版或分支；名称按用户要求使用 Taotie。
 
