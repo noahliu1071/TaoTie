@@ -2,4 +2,6 @@ __pycache__/
 *.pyc
 .DS_Store
 taotie-runs/
+*.sqlite3
+*.sqlite3-*
 

@@ -6,7 +6,7 @@
 
 ### 吃掉重复，留下长处，锻造一个更强的 Agent Skill
 
-一个面向 Codex、Claude Code 等 Agent 的 Skill 管理与融合工具。
+面向 Codex、Claude Code 等 Agent 的 Skill 学习、对比、融合和管理工具。
 
 [![Agent Skill](https://img.shields.io/badge/Agent%20Skill-SKILL.md-cb8a2e?style=flat-square)](SKILL.md)
 [![License](https://img.shields.io/badge/license-pending-59636e?style=flat-square)](#许可)
@@ -14,60 +14,46 @@
 
 </div>
 
-## 它解决什么问题
+## 主要能力
 
-当你有多个功能相近的 Skill 时，真正困难的不是安装，而是判断：
-
-> 哪个 Skill 适合当主骨架？其他 Skill 的哪些经验值得吸收？哪些规则重复、冲突或只是看起来很专业？
-
-Taotie 会把候选 Skill 拆成具体能力，比较证据，处理冲突，生成一个独立的融合版本，并留下可追溯的取舍记录。
-
-## 它怎么工作
-
-```text
-候选 Skills
-    ↓
-盘点输入、输出、工具、依赖和边界
-    ↓
-能力矩阵：重复 / 互补 / 冲突 / 缺口
-    ↓
-选择主骨架，逐项吸收有效能力
-    ↓
-生成自包含 Skill + 融合报告
-    ↓
-结构检查与真实任务对比测试
-    ↓
-保留有效版本，支持回退和继续升级
-```
+| 你想做什么 | 饕餮怎么处理 | 得到什么 |
+| --- | --- | --- |
+| **发现新增或更新的 Skill** | 扫描配置的本地目录，对比来源指纹，跳过排除项和宿主禁用项 | 新增、变更和待分析清单 |
+| **盘点手里的 Skill** | 拆解触发范围、输入、输出、工作步骤、工具、依赖和限制 | 能力矩阵，标出重复、互补、冲突和缺口 |
+| **比较两个 Skill 谁在哪一步更好** | 按目的和输入输出对齐共通步骤，单列独有步骤；条件允许时用同一组任务分别验证 | 步骤对照表、证据和逐项保留或替换建议。[逐步对比](references/comparison.md) |
+| **从来源学习一种方法** | 从 Skill、文档或案例提炼单项能力，记录方法、适用条件、限制、来源和验证证据 | 可单独审阅的能力卡。[能力学习](references/learning.md) |
+| **审核、保存并复用能力** | 将审批绑定到具体候选和来源版本；确认后入库，支持关键词检索，标记来源或证据变化 | 已确认的能力记录及审阅历史 |
+| **为一个任务挑选能力组合** | 按结构化任务要求检查覆盖、输入、输出、依赖、冲突与排除偏好，组合主工作流与专项能力 | 规划候选、具备执行条件的候选和各自的缺口。[能力路由](references/library.md#任务路由) |
+| **融合出一个独立 Skill** | 选择主骨架，吸收互补方法、脚本或参考资料，去重并按适用条件处理冲突 | 自包含候选 Skill、融合报告及来源和取舍记录。[融合规则](references/fusion.md) |
+| **判断融合有没有收益** | 检查结构、引用链和依赖；有独立执行条件时，按预设标准比较原版与融合版的实际输出 | 静态检查与行为结果分别报告。[验证规则](references/evaluation.md) |
+| **迭代已有融合版** | 对照旧融合版、旧来源和新来源，保留用户改动，局部吸收有价值的变化 | 新候选版本、差异和待验证事项 |
+| **维护长期偏好** | 提议并审核不同场景下喜欢或避免的做法，收藏或排除具体能力 | 已确认偏好；收藏影响路由排序，排除阻止进入路由 |
+| **维护记录和版本** | 暂缓或重新审阅候选，撤销已确认记录，查询修订，从旧版发起恢复提议 | 审计历史、状态汇总和索引维护。[记录维护](references/library.md#偏好与维护) |
 
 ## 快速使用
 
-把这个仓库作为 Skill 安装到目标 Agent 的 Skill 目录，然后直接说：
+把仓库作为 Skill 安装到目标 Agent 的 Skill 目录。可以直接指定想走哪条流程。
 
 ```text
-使用 Taotie，以漫剧老李为主，比较 screenwriting-skills、video-understand
-和我指定的其他漫剧 Skill，吸收各自优势，生成独立融合版，并做对比验证。
+对比：用 $taotie 对齐 A 和 B 的共同步骤，单列独有步骤，给出取舍建议。只出报告。
+学习：用 $taotie 扫描我指定的 Skill 目录，把值得复用的方法拆成能力卡，先给我审阅。
+路由：用 $taotie 从已确认能力里给这个任务选组合，标出输入、依赖和执行缺口。
+融合：用 $taotie 以 A 为主，吸收 B 有证据支持的做法，交付独立候选和融合报告。
+升级：用 $taotie 比较这个融合版与来源的新版本，保留我的改动，给出增量升级候选。
 ```
 
-也可以只要求分析：
+## 工作流程
 
 ```text
-用 Taotie 比较这三个 Skill，先输出能力矩阵和冲突报告，不要修改任何文件。
+已知来源或本地扫描 → 盘点与拆解
+                       ├─ 对比 → 步骤对照与取舍建议
+                       ├─ 学习 → 能力卡 → 用户确认 → 长期库 → 检索或任务路由
+                       └─ 融合或升级 → 独立候选 + 融合报告 → 结构与行为验证
 ```
 
-## 主要能力
+能力卡的验证等级依次为 `read`（已读来源）、`runnable`（最小流程跑通）、`reproduced`（代表任务复现）、`reusable`（多组不同条件验证）。入库审批和实测等级分别记录。
 
-| 能力 | 作用 |
-| --- | --- |
-| 候选盘点 | 读取 Skill 的触发范围、流程、资源和依赖 |
-| 能力拆解 | 按剧本、分镜、工具调用、验收等具体能力比较 |
-| 主骨架选择 | 以用户指定 Skill 或证据最充分的 Skill 为主入口 |
-| 优势吸收 | 将互补方法、模板、脚本和参考资料迁移到独立包 |
-| 冲突处理 | 把互相矛盾的规则改成适用条件或保留待验证分支 |
-| 去重清理 | 删除重复、空泛、无效或无法执行的指令 |
-| 可追溯记录 | 记录每项保留、替换、舍弃和待验证决定的来源 |
-| 对比验证 | 用同一组任务比较主 Skill 与融合版本 |
-| 版本升级 | 根据来源变化和用户反馈做局部吸收、保留用户改动 |
+本地知识库使用 Python 3.11+ 和 SQLite，默认保存在 `~/.taotie/knowledge.sqlite3`。运行 `python scripts/knowledge.py --help` 查看命令。[能力库操作手册](references/library.md)
 
 ## 产物结构
 
@@ -93,15 +79,14 @@ Taotie 会优先生成候选版本和报告。安装、替换、禁用或删除�
 
 ## 仓库内容
 
-- [SKILL.md](SKILL.md)：Taotie 主入口。
-- [references/fusion.md](references/fusion.md)：能力拆解、融合和取舍规则。
-- [references/evaluation.md](references/evaluation.md)：结构检查与行为对比方法。
-- [references/sources.md](references/sources.md)：设计参考和边界说明。
-- [assets/taotie-hero.jpg](assets/taotie-hero.jpg)：Taotie 项目封面图。
+- Taotie 主入口及操作模式。[SKILL.md](SKILL.md)
+- 逐步对比、融合规则和验证方法。[对比](references/comparison.md) · [融合](references/fusion.md) · [验证](references/evaluation.md)
+- 能力学习、能力库操作及设计来源。[学习](references/learning.md) · [能力库](references/library.md) · [来源](references/sources.md)
+- 本地命令入口，以及发现与路由实现。[knowledge.py](scripts/knowledge.py) · [discovery.py](scripts/discovery.py) · [routing.py](scripts/routing.py)
 
 ## 当前状态
 
-Taotie 当前是可用的实验版，已经覆盖 Skill 盘点、能力融合、冲突处理、报告和验证流程。真实业务效果仍取决于候选 Skill 的质量、模型能力、外部工具和测试样本。
+Taotie 处于实验阶段。已验证 Skill 结构和本地知识库的关键流程，包括目录发现、版本审批、依赖与冲突检查、偏好及撤销恢复。融合效果仍需按具体任务、模型和工具做独立对照。
 
 ## 许可
 
