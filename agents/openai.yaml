@@ -1,4 +1,4 @@
 interface:
   display_name: "Taotie · 饕餮"
-  short_description: "对齐两个技能的工作流，测试重合步骤优劣并建议保留与替换"
+  short_description: "逐步比较技能工作流，提炼和检索已确认的能力，并融合成独立技能"
   default_prompt: "使用 $taotie 对比这两个 Skill 的工作流，测试重合步骤的优劣，单列独有步骤并建议吸收方向，先不合体。"

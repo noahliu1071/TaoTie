@@ -68,6 +68,16 @@ Taotie 会把候选 Skill 拆成具体能力，比较证据，处理冲突，生
 | 可追溯记录 | 记录每项保留、替换、舍弃和待验证决定的来源 |
 | 对比验证 | 用同一组任务比较主 Skill 与融合版本 |
 | 版本升级 | 根据来源变化和用户反馈做局部吸收、保留用户改动 |
+| 能力学习 | 从 Skill、流程或案例提炼一项可迁移能力，展示来源、限制、重叠与验证证据 |
+| 长期能力库 | 审核后入库，按关键词检索、追踪来源变化、保留修订和撤销历史 |
+
+## 学习模式
+
+```text
+使用 $taotie 学习这两个本地 Skill，挑出值得复用的能力，列出来源、适用条件和验证等级，先给我审阅。
+```
+
+用 Python 3.11+ 运行 `python scripts/knowledge.py --help`。知识库默认保存在 `~/.taotie/knowledge.sqlite3`，与仓库、源 Skill 和融合候选分开。只读盘点和对比沿用原流程。学习和入库方法见 [能力学习与记忆](references/learning.md)。
 
 ## 产物结构
 
@@ -97,6 +107,7 @@ Taotie 会优先生成候选版本和报告。安装、替换、禁用或删除�
 - [references/fusion.md](references/fusion.md)：能力拆解、融合和取舍规则。
 - [references/evaluation.md](references/evaluation.md)：结构检查与行为对比方法。
 - [references/sources.md](references/sources.md)：设计参考和边界说明。
+- [scripts/knowledge.py](scripts/knowledge.py)：来源指纹、候选、版本确认、检索与撤销。
 - [assets/taotie-hero.jpg](assets/taotie-hero.jpg)：Taotie 项目封面图。
 
 ## 当前状态
